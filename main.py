@@ -1,4 +1,6 @@
 '''
+Array Series !!
+################################################################################################################################################################################ 11 ####################################################################
 You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
 
 Find two lines that together with the x-axis form a container, such that the container contains the most water.
@@ -31,17 +33,62 @@ def maxArea(self, height: List[int]) -> int:
 '''
 
 
-def maxArea(height):
-    maxI = 0
-    for l in range(len(height)):
-        for r in range(l+1,len(height)):
-            area = (r-l)* min(height[l],height[r])
-            maxI = max(maxI,area)
-    return maxI
+# def maxArea(height):
+#     maxI = 0
+#     for l in range(len(height)):
+#         for r in range(l+1,len(height)):
+#             area = (r-l)* min(height[l],height[r])
+#             maxI = max(maxI,area)
+#     return maxI
+#
+#
+#
+#
+# height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+# s = maxArea(height)
+# print(s)
+
+#############################################################################################################################
+####################################### 15 ##################################################################################
+# nums = [-1,0,1,2,-1,-4]
+#
+# trips = []
+# for i in range(len(nums)):
+#     for j in range(i,len(nums)):
+#         for k in range(j,len(nums)):
+#             if(i==j==k):
+#                 continue
+#             else:
+#                 if(i!=j and i!=k and j!=k):
+#                     if(nums[i]+nums[j]+nums[k] == 0):
+#                         ele = [nums[i],nums[j],nums[k]]
+#                         ele = sorted(ele)
+#                         print(ele)
+#                         if ele in trips:
+#                             continue
+#                         else:
+#                             trips.append(ele)
+# print(sorted(trips))
+
+# working, but time limit exceeding for extreme test cases..
 
 
 
-
-height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
-s = maxArea(height)
-print(s)
+#optimizing:
+nums = [-1,0,1,2,-1,-4]
+trips = []
+for i in range(len(nums)):
+    a = nums[i]
+    start,end = i+1 , len(nums)-1
+    t = -a
+    while(start<end):
+        print(start,end)
+        if(nums[start]+nums[end] == t):
+            print(nums[start],nums[end],a)
+            s = [a,nums[start],nums[end]]
+            trips.append(s)
+        elif(nums[start]+nums[end] > t):
+            end-=1
+        else:
+            start+=1
+print(trips)
